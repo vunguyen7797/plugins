@@ -1040,8 +1040,7 @@ NSString *const errorMethod = @"error";
 
  // NSDictionary *videoSettings = [_captureVideoOutput
     //    recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
- // _videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo
-  //                                                       outputSettings:videoSettings];
+
 
   NSDictionary *videoSettings;
   if (@available(iOS 11.0, *)) {
@@ -1049,7 +1048,8 @@ NSString *const errorMethod = @"error";
   } else {
     videoSettings = [_captureVideoOutput recommendedVideoSettingsForAssetWriterWithOutputFileType:AVFileTypeMPEG4];
   }
-
+  _videoWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo
+                                                        outputSettings:videoSettings];
 
   _videoAdaptor = [AVAssetWriterInputPixelBufferAdaptor
       assetWriterInputPixelBufferAdaptorWithAssetWriterInput:_videoWriterInput
